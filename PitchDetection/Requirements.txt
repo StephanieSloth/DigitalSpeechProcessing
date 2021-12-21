@@ -1,0 +1,12 @@
+基音检测
+实验目的：本实验目的是估计给定语料基音周期。
+实验内容: 用MATLAB或C语言实现基音检测算法，并得出检测结果。
+实验语料：MaoYiSheng.wav
+实验环境：发音：“茅以升”；时长0.9s；采样率：8kHz；量化精度：16bits/sample；数据格式：LSB，MSB；分析帧长：20 ms (160样点)；总帧数：45。
+
+
+Pitch detection
+Estimate the speech signal's pitch 
+MATLAB or C
+
+Speech file: `MaoYiSheng.wav'; Time: 0.9s; Sampling rate: 8kHz; Quantization precision: 16bits/sample; Format: LSB, MSB; Frame length: 20 ms (160 samples); Total frames：45.
