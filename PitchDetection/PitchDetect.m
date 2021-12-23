@@ -71,8 +71,8 @@ for n = 1:FrameNum-1 % analysis position or window shift(n^)
 end
 % get the pitch
 
-maxkM = zeros(1,FrameNum);
-pitchM = zeros(1,FrameNum);
+maxkM = zeros(1,FrameNum-1);
+pitchM = zeros(1,FrameNum-1);
 % next max magnitude is the pitch 
 for n = 1:FrameNum-1
     maxkM(n) = find(RnM(n,15:end) == max(RnM(n,15:end)));
@@ -92,16 +92,16 @@ figure(2);
 subplot(221)
 k = 1:L;
 stem(k,Rn(5,:),'.');grid on;
-xlabel('Lag k');ylabel('R(x)');title('Frame 5');
+xlabel('Lag k');ylabel('R[k]');title('Frame 5');
 subplot(222)
 stem(k,Rn(20,:),'.');grid on;
-xlabel('Lag k');ylabel('R(x)');title('Frame 20');
+xlabel('Lag k');ylabel('R[k]');title('Frame 20');
 subplot(223)
 stem(k,Rn(35,:),'.');grid on;
-xlabel('Lag k');ylabel('R(x)');title('Frame 30');
+xlabel('Lag k');ylabel('R[k]');title('Frame 35');
 subplot(224)
 stem(k,Rn(40,:),'.');grid on;
-xlabel('Lag k');ylabel('R(x)');title('Frame 45');
+xlabel('Lag k');ylabel('R[k]');title('Frame 40');
 sgtitle('STAF with Rectangular Window');
 
 % Hamming - destory periodicity
@@ -109,16 +109,16 @@ figure(3);
 subplot(221)
 k = 1:L;
 stem(k,Rn_ham(5,:),'.');grid on;
-xlabel('Lag k');ylabel('R(x)');title('Frame 5');
+xlabel('Lag k');ylabel('R[k]');title('Frame 5');
 subplot(222)
 stem(k,Rn_ham(20,:),'.');grid on;
-xlabel('Lag k');ylabel('R(x)');title('Frame 20');
+xlabel('Lag k');ylabel('R[k]');title('Frame 20');
 subplot(223)
 stem(k,Rn_ham(35,:),'.');grid on;
-xlabel('Lag k');ylabel('R(x)');title('Frame 30');
+xlabel('Lag k');ylabel('R[k]');title('Frame 35');
 subplot(224)
 stem(k,Rn_ham(40,:),'.');grid on;
-xlabel('Lag k');ylabel('R(x)');title('Frame 45');
+xlabel('Lag k');ylabel('R[k]');title('Frame 40');
 sgtitle('STAF with Hamming Window');
 
 % Modified
@@ -126,26 +126,47 @@ figure(4);
 subplot(221)
 k = 1:L;
 stem(k,RnM(5,:),'.');grid on;
-xlabel('Lag k');ylabel('R(x)');title('Frame 5');
+xlabel('Lag k');ylabel('R[k]');title('Frame 5');
 subplot(222)
 stem(k,RnM(20,:),'.');grid on;
-xlabel('Lag k');ylabel('R(x)');title('Frame 20');
+xlabel('Lag k');ylabel('R[k]');title('Frame 20');
 subplot(223)
 stem(k,RnM(35,:),'.');grid on;
-xlabel('Lag k');ylabel('R(x)');title('Frame 30');
+xlabel('Lag k');ylabel('R[k]');title('Frame 35');
 subplot(224)
 stem(k,RnM(40,:),'.');grid on;
-xlabel('Lag k');ylabel('R(x)');title('Frame 45');
+xlabel('Lag k');ylabel('R[k]');title('Frame 40');
 sgtitle('Modified STAF');
 
 % pitch
 figure(5);
 subplot(211);
 stem(pitch,'.');
-xlabel('frame(n)');ylabel('Pitch(ms)');title('STAF with Rectangular Window ');
+xlabel('frame(n)');ylabel('Pitch period(ms)');title('Pitch period for each frame');
 grid on;
+axis([0 45 0 20]);
+
+fpitch = 1./pitch*1000;
 subplot(212);
-stem(pitchM,'.');
-xlabel('frame(n)');ylabel('Pitch(ms)');title('Modified STAF');
+stem(fpitch,'.');
+xlabel('frame(n)');ylabel('Pitch(Hz)');title('Pitch for each frame');
 grid on;
-sgtitle('Pitch for each frame');
+axis([0 45 0 400]);
+sgtitle('STAF with Rectangular Window');
+
+
+%
+figure(6);
+subplot(211);
+stem(pitchM,'.');
+xlabel('frame(n)');ylabel('Pitch period(ms)');title('Pitch period for each frame');
+grid on;
+axis([0 45 0 20]);
+fpitchM = 1./pitchM*1000;
+
+subplot(212);
+stem(fpitchM,'.');
+xlabel('frame(n)');ylabel('Pitch(Hz)');title('Pitch for each frame');
+grid on;
+axis([0 45 0 400]);
+sgtitle('Modified STAF');
