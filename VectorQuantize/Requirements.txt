@@ -1,0 +1,15 @@
+矢量量化：
+–    对给定数据进行矢量量化。
+–    要求用MATLAB或C语言实现码本训练和矢量量化算法，并给出量化结果（包括码本和平均量化失真）。
+–    训练数据（128）：‘training.dat’
+–    待量化数据（64）：‘to_be_quantized.dat’
+–    要求矢量为2维, 码本尺寸为4，失真准则采用欧几里得距离（均方误差）。
+
+
+Vector Quantization:
+- design the VQ algorithm
+- to realize codebook training and vector quantization with MATLAB or C, and then show the results of codebook and the average quantization distortion
+- training data (128): `training.dat'
+- test data (64): `to_be_quantized.dat'
+- vector size: 2-dimension vector, codebook size: 4, distortion measure: mean square error
+
